@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Whitelist GTA SA-MP</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       background: #0f172a;
       font-family: Arial, sans-serif;
       color: white;
     }
-    .box {
+    .container {
       max-width: 400px;
       margin: 80px auto;
       background: #020617;
       padding: 20px;
       border-radius: 10px;
     }
-    h2 {
+    h1 {
       text-align: center;
       color: #38bdf8;
     }
@@ -28,12 +28,8 @@
       border-radius: 6px;
       border: none;
     }
-    textarea {
-      resize: none;
-      height: 90px;
-    }
     button {
-      background: #22c55e;
+      background: #25D366;
       font-weight: bold;
       cursor: pointer;
     }
@@ -41,25 +37,38 @@
 </head>
 <body>
 
-<div class="box">
-  <h2>Whitelist SA-MP</h2>
+<div class="container">
+  <h1>Whitelist GTA SA-MP</h1>
 
-  <input type="text" id="nickname" placeholder="Nickname IC" required>
-  <input type="text" id="whatsapp" placeholder="Nomor WhatsApp (08xxxx)" required>
-  <textarea id="alasan" placeholder="Alasan Join Server" required></textarea>
+  <input id="name" placeholder="Nama IC" required>
+  <input id="age" type="number" placeholder="Umur IC" required>
+  <textarea id="reason" placeholder="Alasan Join Server" required></textarea>
 
-  <button onclick="kirimWA()">Kirim ke WhatsApp</button>
+  <button onclick="sendWA()">Kirim ke WhatsApp</button>
 </div>
 
 <script>
-function kirimWA() {
-  var nick = document.getElementById("nickname").value;
-  var wa = document.getElementById("whatsapp").value;
-  var alasan = document.getElementById("alasan").value;
+function sendWA() {
+  var name = document.getElementById("name").value;
+  var age = document.getElementById("age").value;
+  var reason = document.getElementById("reason").value;
 
-  if (!nick || !wa || !alasan) {
-    alert("Lengkapi semua data!");
+  if (!name || !age || !reason) {
+    alert("Woy isi semua dulu 😑");
     return;
   }
 
-  var adminWA = "6289518352335"
+  var phone = "6289518952335"; // GANTI NOMOR ADMIN
+  var text =
+    "WHITELIST GTA SA-MP%0A%0A" +
+    "Nama IC: " + name + "%0A" +
+    "Umur IC: " + age + "%0A" +
+    "Alasan: " + reason;
+
+  var url = "https://wa.me/" + phone + "?text=" + text;
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
